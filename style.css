@@ -1,0 +1,90 @@
+#header-container{
+    background-color: #212820;
+}
+
+#main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 60px;
+}
+
+
+#poke-card-container{
+    background-color: #53624b;
+}
+
+#poke-card-container{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    
+}
+
+.poke-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    height: 220px;
+    width: 260px;
+}
+
+.poke-card-headline{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.poke-card-pic{
+    width: 100px;
+    height: 100px;
+}
+
+.poke-card-footer{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.card-color-grass{
+    background-color: #49d07f;
+}
+
+.card-color-fire{
+    background-color: red;
+}
+
+.card-color-water{
+    background-color: blue;
+}
+
+.card-color-bug{
+    background-color: greenyellow
+}
+
+.card-color-normal{
+    background-color: gray
+}
+
+.card-color-poison{
+    background-color: greenyellow
+}
+
+.card-color-electric{
+    background-color: goldenrod
+}
+
+
+
+
+
+
+
+#footer-container{
+    background-color: #212820;
+}

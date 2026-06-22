@@ -1,0 +1,18 @@
+html {
+    font-family: "Orbitron";
+    
+    
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+    color: white;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}

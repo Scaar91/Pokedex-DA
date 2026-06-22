@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style/fonts.css">
+    <link rel="stylesheet" href="./style/standard.css">
+    
+
+    <script src="./script.js" defer></script>
+    <script src="./script/storage.js" defer></script>
+    <script src="./script/template.js" defer></script>
+
+
+    <title>Pokedex</title>
+</head>
+
+<body onload="init()">
+    <header id="header-container">
+        <div class="header-line">
+            <a href="../../index.html"><img class="img-logo" src="" alt=""></a>
+            <h1>Pokedex</h1>
+            <input type="text" id="search-input" placeholder="Search Pokemon" oninput="searchPokemon()">
+    </header>
+
+
+    <main>
+
+        <div id="main-container">
+
+            <div id="poke-card-container">
+                <div id="loading-spinner"></div>
+            </div>
+            <button class="load-button" onclick="loadMore()">Mehr Laden</button>
+        </div>
+        <dialog id="dialog-window"></dialog>
+    </main>
+
+
+
+
+
+
+    <footer id="footer-container">
+        <div class="footer-content">
+            <p class="copy-right">© 2026 Pokedex</p>
+            <a href="./assets/components/imprint.html">Impressum</a>
+            <a href="./assets/components/privacy_policy.html">Datenschutz</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
