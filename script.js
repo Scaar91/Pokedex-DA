@@ -39,13 +39,20 @@ function searchPokemon() {
     renderPokeCard();
 }
 
+const dialog = document.getElementById('dialog-window');
+
 function openDialog(pokemon) {
-    const dialog = document.getElementById('dialog-window');
     dialog.showModal();
     document.body.classList.add("dialog-open");
 
     renderDialogPokemon(pokemon);
 }
+
+function closeDialog() {
+  dialog.close();
+  document.body.classList.remove("dialog-open");
+}
+
 
 function renderDialogPokemon(pokemon) {
     const dialogPokemon = document.getElementById('dialog-window');

@@ -1,0 +1,68 @@
+#dialog-window:open {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 600px;
+    width: 400px;
+    background-color: #05171e;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 0;
+}
+
+#dialog-section-top{
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    padding: 20px;
+}
+
+.close-dialog-btn{
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+}
+
+.dialog-poke-name-type-number{
+    display: flex;
+    justify-content: space-around;
+}
+
+.dialog-poke-name-and-type{
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-poke-name{
+    text-align: center;
+    padding: 10px;
+}
+
+.dialog-poke-type{
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.dialog-type{
+    background-color: red;
+    border-radius: 14px;
+    padding: 4px;
+}
+
+
+
+
+
+
+#dialog-section-bottom{
+    background-color: aliceblue;
+    color: black;
+    border-radius: 14px;
+}
+
+.dialog-section-bottom-headline{
+    display: flex;
+    gap: 10px;
+}
