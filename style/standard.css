@@ -1,18 +1,23 @@
-html {
+html{
     font-family: "Orbitron";
     color: white;
     
     
 }
 
-* {
+*{
     box-sizing: border-box;
     margin: 0;
     scroll-behavior: smooth;
 }
 
-button {
+button{
     cursor: pointer;
     background: none;
     border: none;
+}
+
+table{
+    font-size: 10px;
+    border-spacing: 50px 20px;
 }

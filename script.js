@@ -46,6 +46,7 @@ function openDialog(pokemon) {
     document.body.classList.add("dialog-open");
 
     renderDialogPokemon(pokemon);
+    renderDialogPokemonAbout(pokemon);
 }
 
 function closeDialog() {
@@ -59,4 +60,29 @@ function renderDialogPokemon(pokemon) {
     dialogPokemon.innerHTML = "";
     dialogPokemon.innerHTML = renderDialog(pokemon);
 }
+
+function renderDialogPokemonAbout(pokemon) {
+    const dialogPokemonAbout = document.getElementById('dialog-container-stats');
+    dialogPokemonAbout.innerHTML = "";
+    dialogPokemonAbout.innerHTML = renderDialogAbout(pokemon);
+}
+
+function renderDialogPokemonBaseStats(pokemon) {
+    const dialogPokemonBaseStats = document.getElementById('dialog-container-stats');
+    dialogPokemonBaseStats.innerHTML = "";
+    dialogPokemonBaseStats.innerHTML = renderDialogBaseStats(pokemon);
+}
+
+function renderDialogPokemonEvolution(pokemon) {
+    const dialogPokemonEvolution = document.getElementById('dialog-container-stats');
+    dialogPokemonEvolution.innerHTML = "";
+    dialogPokemonEvolution.innerHTML = renderDialogEvolution(pokemon);
+}
+
+function renderDialogPokemonMoves(pokemon) {
+    const dialogPokemonMoves = document.getElementById('dialog-container-stats');
+    dialogPokemonMoves.innerHTML = "";
+    dialogPokemonMoves.innerHTML = renderDialogMoves(pokemon);
+}
+
 
