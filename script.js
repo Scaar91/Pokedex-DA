@@ -1,8 +1,9 @@
 
 async function init() {
     showLoadingSpinner();
-    await fetchDataJson();
-    await fetchPokeData();
+    await fetchAllDataJson();
+    await fetchAllPokeData();
+    await fetchSpecies();
     filteredPokemon = allPokeData;
     renderPokeCard();
 }
@@ -26,7 +27,7 @@ function loadMore() {
 
 function showLoadingSpinner() {
     document.getElementById('loading-spinner').innerHTML =
-    '<img src="./img/pokeloading.svg" alt="jumping Pokeball">';
+    '<img src="./assets/img/pokeloading.svg" alt="jumping Pokeball">';
 }
 
 function searchPokemon() {
