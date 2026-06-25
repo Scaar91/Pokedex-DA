@@ -26,20 +26,20 @@
         <div class="header-line">
             <a href="../../index.html"><img class="img-logo" src="" alt=""></a>
             <h1>Pokedex</h1>
-            <input type="text" id="search-input" placeholder="Search Pokemon" oninput="searchPokemon()">
+            <input type="text" data-id="search-input" placeholder="Search Pokemon" oninput="searchPokemon()">
     </header>
 
 
-    <main>
+    <main data-id="content">
 
         <div id="main-container">
 
             <div id="poke-card-container">
                 <div id="loading-spinner"></div>
             </div>
-            <button class="load-button" onclick="loadMore()">Mehr Laden</button>
+            <button data-id="load-more-button" class="load-button" onclick="loadMore()">Mehr Laden</button>
         </div>
-        <dialog id="dialog-window"></dialog>
+        <dialog data-id="dialog" id="dialog-window"></dialog>
     </main>
 
 
