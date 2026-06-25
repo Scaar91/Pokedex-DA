@@ -50,10 +50,13 @@
 }
 
 .dialog-type{
-    border-radius: 14px;
-    padding: 6px;
-    width: 100px;
+    color: white;
     text-align: center;
+    width: 100px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
 }
 
 
@@ -61,10 +64,9 @@
 
 
 
-#dialog-section-bottom{
-    background-color: aliceblue;
-    color: black;
-    border-radius: 14px;
+#dialog-section-bottom {
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
 }
 
 .dialog-section-bottom-headline{

@@ -11,6 +11,14 @@ html{
     scroll-behavior: smooth;
 }
 
+main{
+     background:
+        radial-gradient(circle at top left,
+        #1e293b 0%,
+        #0b1120 50%,
+        #020617 100%);
+}
+
 button{
     cursor: pointer;
     background: none;
@@ -21,3 +29,5 @@ table{
     font-size: 10px;
     border-spacing: 50px 20px;
 }
+
+
