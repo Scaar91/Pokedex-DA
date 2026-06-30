@@ -119,16 +119,16 @@ function renderDialogBaseStats(dialogData) {
 function renderDialogEvolution(dialogData) {
     return `<section id="evolution">
               <div id="first-evolution">
-                <h3>placeholder Name</h3>
-                <img src="" alt="">
+                <h6><div class="evolution-name uppercase">${dialogData.evolutionNames[0] || ""}</div></h6>
+                <img class="evolution-pic" src="${dialogData.evolutionChain[0]?.img || ""}" />
               </div>
               <div id="second-evolution">
-                <h3>placeholder Name</h3>
-                <img src="" alt="">
+                <h6><div class="evolution-name uppercase">${dialogData.evolutionNames[1] || ""}</div></h6>
+                <img class="evolution-pic" src="${dialogData.evolutionChain[1]?.img || ""}" />
               </div>
               <div id="third-evolution">
-                <h3>placeholder Name</h3>
-                <img src="" alt="">
+                <h6><div class="evolution-name uppercase">${dialogData.evolutionNames[2] || ""}</div></h6>
+                <img class="evolution-pic" src="${dialogData.evolutionChain[2]?.img || ""}" />
               </div>
             </section>
     `
