@@ -21,7 +21,7 @@ function renderMain(pokemon) {
 }
 
 function renderDialog(pokemon, dialogData) {
-    return `<section data-id="overlay-pokemon-name">
+    return `<section data-id="overlay-pokemon-name" id="dialog-container">
                 <section id="dialog-section-top" class="card-color-${pokemon.types[0].type.name}">
                     <div class="dialog-headline">
                        <button data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-btn"><img src="./assets/icons/close.png" alt="Dialog closeing Button"></button>                   
@@ -120,23 +120,32 @@ function renderDialogEvolution(dialogData) {
     return `<section id="evolution">
               <div id="first-evolution">
                 <h6><div class="evolution-name uppercase">${dialogData.evolutionNames[0] || ""}</div></h6>
-                <img class="evolution-pic" src="${dialogData.evolutionChain[0]?.img || ""}" />
+                <div class="evolution-circle">
+                  <img class="evolution-pic" src="${dialogData.evolutionChain[0]?.img || ""}" />
+                </div>
               </div>
+              <div class="evolution-arrow">➜</div>
               <div id="second-evolution">
                 <h6><div class="evolution-name uppercase">${dialogData.evolutionNames[1] || ""}</div></h6>
-                <img class="evolution-pic" src="${dialogData.evolutionChain[1]?.img || ""}" />
+                <div class="evolution-circle">
+                  <img class="evolution-pic" src="${dialogData.evolutionChain[1]?.img || ""}" />
+                </div>
               </div>
+              <div class="evolution-arrow">➜</div>
               <div id="third-evolution">
                 <h6><div class="evolution-name uppercase">${dialogData.evolutionNames[2] || ""}</div></h6>
-                <img class="evolution-pic" src="${dialogData.evolutionChain[2]?.img || ""}" />
+                <div class="evolution-circle">
+                  <img class="evolution-pic" src="${dialogData.evolutionChain[2]?.img || ""}" />
+                </div>
               </div>
             </section>
     `
 }
 
 function renderDialogMoves(dialogData) {
-    return `<ul>
-               ${dialogData.moves}</li>
-            </ul>
-            `
+      return `
+        <div class="moves-container">
+            ${dialogData.moves}
+        </div>
+    `;
 }

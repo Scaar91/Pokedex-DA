@@ -28,8 +28,8 @@ button{
 }
 
 table{
-    font-size: 10px;
-    border-spacing: 50px 20px;
+    font-size: 12px;
+    border-spacing: 100px 20px;
 }
 
 th{
@@ -39,9 +39,3 @@ th{
 tr{
     color: #696b70;
 }
-
-ul{
-    color: black;
-}
-
-

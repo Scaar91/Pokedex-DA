@@ -108,7 +108,7 @@ function getMoves(pokemon){
     let moves = [];
 
     for (let i = 0; i < 10; i++) {
-        moves.push(`<li>${pokemon.moves[i].move.name}</li>`);
+        moves.push(`<span class="move">${pokemon.moves[i].move.name}</span>`);
     }
 
     return moves.join("");
