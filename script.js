@@ -7,6 +7,8 @@ async function init() {
     renderPokeCard();
 }
 
+let dialogCache = {};
+
 
 
 function renderPokeCard() {
@@ -51,9 +53,12 @@ async function openDialog(pokemon) {
 
     renderDialogPokemon(pokemon);
 
-    const dialogData = await buildDialogData(pokemon);
+    if (!dialogCache[pokemon.id]) {
+        dialogCache[pokemon.id] = await buildDialogData(pokemon);
+    }
 
-    renderDialogPokemonAbout(dialogData);
+    renderDialogPokemonAbout(dialogCache[pokemon.id]);
+    
 }
 
 function closeDialog() {
@@ -74,10 +79,10 @@ function renderDialogPokemonAbout(dialogData) {
     dialogPokemonAbout.innerHTML = renderDialogAbout(dialogData);
 }
 
-function renderDialogPokemonBaseStats(pokemon) {
+function renderDialogPokemonBaseStats(dialogData) {
     const dialogPokemonBaseStats = document.getElementById('dialog-container-stats');
     dialogPokemonBaseStats.innerHTML = "";
-    dialogPokemonBaseStats.innerHTML = renderDialogBaseStats(pokemon);
+    dialogPokemonBaseStats.innerHTML = renderDialogBaseStats(dialogData);
 }
 
 function renderDialogPokemonEvolution(pokemon) {

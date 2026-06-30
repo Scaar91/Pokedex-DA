@@ -20,7 +20,7 @@ function renderMain(pokemon) {
     `
 }
 
-function renderDialog(pokemon) {
+function renderDialog(pokemon, dialogData) {
     return `<section data-id="overlay-pokemon-name">
                 <section id="dialog-section-top" class="card-color-${pokemon.types[0].type.name}">
                     <div class="dialog-headline">
@@ -44,8 +44,8 @@ function renderDialog(pokemon) {
                 </section>
                 <section id="dialog-section-bottom">
                     <div class="dialog-section-bottom-headline">
-                            <button class="dialog-tab" onclick="renderDialogPokemonAbout(allPokeData[${pokemon.id - 1}]);"><h3>About</h3></button>
-                            <button class="dialog-tab" onclick="renderDialogPokemonBaseStats(allPokeData[${pokemon.id - 1}]);"><h3>Base Stats</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonAbout(dialogCache[${pokemon.id}])"><h3>About</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonBaseStats(dialogCache[${pokemon.id}]);"><h3>Base Stats</h3></button>
                             <button class="dialog-tab" onclick="renderDialogPokemonEvolution(allPokeData[${pokemon.id - 1}]);"><h3>Evolution</h3></button>
                             <button class="dialog-tab" onclick="renderDialogPokemonMoves(allPokeData[${pokemon.id - 1}]);"><h3>Moves</h3></button>
                     </div>
@@ -86,31 +86,31 @@ function renderDialogAbout(data) {
             `
 }
 
-function renderDialogBaseStats(data) {
+function renderDialogBaseStats(dialogData) {
     return `<table>
               <tr>
                 <th>HP</th>
-                <td>${data.stats.hp}</td>
+                <td>${dialogData.stats.hp}</td>
               </tr>
               <tr>
                 <th>Attack</th>
-                <td>P</td>
+                <td>${dialogData.stats.attack}</td>
               </tr>
               <tr>
                 <th>Defense</th>
-                <td>P</td>
+                <td>${dialogData.stats.defense}</td>
               </tr>
               <tr>
                 <th>Special Attack</th>
-                <td>Placeholder</td>
+                <td>${dialogData.stats.specialAttack}</td>
               </tr>
               <tr>
                 <th>Special Defense</th>
-                <td>Placeholder</td>
+                <td>${dialogData.stats.specialDefense}</td>
               </tr>
               <tr>
                 <th>Speed</th>
-                <td>Placeholder</td>
+                <td>${dialogData.stats.speed}</td>
               </tr>     
             </table>
             `

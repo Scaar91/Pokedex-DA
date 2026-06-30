@@ -15,7 +15,6 @@ async function fetchAllDataJson() {
     );
     let responseToJson = await response.json();
   
-    console.log(responseToJson);
       return responseToJson.results; 
 }
 
@@ -30,7 +29,6 @@ async function fetchAllPokeData() {
         allPokeData.push(pokemonData);
     }
     
-    console.log(allPokeData);
     return allPokeData;
 }
 
@@ -54,12 +52,14 @@ async function buildDialogData(pokemon) {
     const species = await getSpeciesData(pokemon);
 
     return {
+        pokemon,
         genus: getGenus(species),
         height: pokemon.height,
         weight: pokemon.weight,
         abilities: getAbilities(pokemon),
         stats: getStats(pokemon)
     };
+    
 }
 
 function getAbilities(pokemon) {
@@ -86,5 +86,8 @@ function getGenus(speciesData) {
         }
     }
 }
+
+function getMoves(pokemon)
+    
 
 
