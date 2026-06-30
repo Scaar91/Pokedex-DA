@@ -1,27 +1,30 @@
 
 async function init() {
     showLoadingSpinner();
-    await fetchAllDataJson();
+    
     await fetchAllPokeData();
-    await fetchSpecies();
     filteredPokemon = allPokeData;
     renderPokeCard();
 }
 
 
-let currentAmount = 20
 
 function renderPokeCard() {
 
     const pokeCard = document.getElementById('poke-card-container');
     pokeCard.innerHTML = "";
-    for (let index = 0; index < currentAmount; index++) {
+    for (let index = 0; index < filteredPokemon.length; index++) {
         pokeCard.innerHTML += renderMain(filteredPokemon[index]);
     }
 }
 
-function loadMore() {
-    currentAmount += 10;
+async function loadMore() {
+    
+    offset += 20;
+
+    await fetchAllPokeData();
+
+    filteredPokemon = allPokeData;
     renderPokeCard();
 }
 
@@ -42,12 +45,15 @@ function searchPokemon() {
 
 const dialog = document.getElementById('dialog-window');
 
-function openDialog(pokemon) {
+async function openDialog(pokemon) {
     dialog.showModal();
     document.body.classList.add("dialog-open");
 
     renderDialogPokemon(pokemon);
-    renderDialogPokemonAbout(pokemon);
+
+    const dialogData = await buildDialogData(pokemon);
+
+    renderDialogPokemonAbout(dialogData);
 }
 
 function closeDialog() {
@@ -62,10 +68,10 @@ function renderDialogPokemon(pokemon) {
     dialogPokemon.innerHTML = renderDialog(pokemon);
 }
 
-function renderDialogPokemonAbout(pokemon) {
+function renderDialogPokemonAbout(dialogData) {
     const dialogPokemonAbout = document.getElementById('dialog-container-stats');
     dialogPokemonAbout.innerHTML = "";
-    dialogPokemonAbout.innerHTML = renderDialogAbout(pokemon);
+    dialogPokemonAbout.innerHTML = renderDialogAbout(dialogData);
 }
 
 function renderDialogPokemonBaseStats(pokemon) {

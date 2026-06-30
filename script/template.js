@@ -44,12 +44,17 @@ function renderDialog(pokemon) {
                 </section>
                 <section id="dialog-section-bottom">
                     <div class="dialog-section-bottom-headline">
-                            <a href="#" onclick="renderDialogPokemonAbout(allPokeData[${pokemon.id - 1}]);"><h3>About</h3></a>
-                            <a href="#" onclick="renderDialogPokemonBaseStats(allPokeData[${pokemon.id - 1}]);"><h3>Base Stats</h3></a>
-                            <a href="#" onclick="renderDialogPokemonEvolution(allPokeData[${pokemon.id - 1}]);"><h3>Evolution</h3></a>
-                            <a href="#" onclick="renderDialogPokemonMoves(allPokeData[${pokemon.id - 1}]);"><h3>Moves</h3></a>
+                            <button class="dialog-tab" onclick="renderDialogPokemonAbout(allPokeData[${pokemon.id - 1}]);"><h3>About</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonBaseStats(allPokeData[${pokemon.id - 1}]);"><h3>Base Stats</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonEvolution(allPokeData[${pokemon.id - 1}]);"><h3>Evolution</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonMoves(allPokeData[${pokemon.id - 1}]);"><h3>Moves</h3></button>
                     </div>
                     <section id="dialog-container-stats"></section>
+                    <div class="nav-buttons">
+                        <button class= "nav-btn"> <img src="./assets/icons/arrow-left.svg" alt="arrow left"></button>
+                        <button class= "nav-btn"> <img src="./assets/icons/arrow-right.svg" alt="arrow right"></button>
+                    </div>
+                                        
 
                     
                          
@@ -59,30 +64,56 @@ function renderDialog(pokemon) {
             `
 }
 
-function renderDialogAbout(pokemon) {
+function renderDialogAbout(data) {
     return `<table>
               <tr>
                 <th>Species</th>
-                <td>Placeholder Seed</td>
+                <td>${data.genus}</td>
               </tr>
               <tr>
                 <th>Height</th>
-                <td>${pokemon.height}</td>
+                <td>${data.height}</td>
               </tr>
               <tr>
                 <th>Weight</th>
-                <td>${pokemon.weight}</td>
+                <td>${data.weight}</td>
               </tr>
               <tr>
                 <th>Abilities</th>
-                <td>Placeholder</td>
+                <td>${data.abilities}</td>
               </tr>   
             </table>
             `
 }
 
-function renderDialogBaseStats(pokemon) {
-    return `Test`
+function renderDialogBaseStats(data) {
+    return `<table>
+              <tr>
+                <th>HP</th>
+                <td>${data.stats.hp}</td>
+              </tr>
+              <tr>
+                <th>Attack</th>
+                <td>P</td>
+              </tr>
+              <tr>
+                <th>Defense</th>
+                <td>P</td>
+              </tr>
+              <tr>
+                <th>Special Attack</th>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <th>Special Defense</th>
+                <td>Placeholder</td>
+              </tr>
+              <tr>
+                <th>Speed</th>
+                <td>Placeholder</td>
+              </tr>     
+            </table>
+            `
 }
 
 function renderDialogEvolution(pokemon) {
