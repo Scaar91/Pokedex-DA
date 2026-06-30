@@ -5,6 +5,9 @@ async function init() {
     await fetchAllPokeData();
     filteredPokemon = allPokeData;
     renderPokeCard();
+    
+    
+    
 }
 
 let dialogCache = {};

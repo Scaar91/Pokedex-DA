@@ -46,8 +46,8 @@ function renderDialog(pokemon, dialogData) {
                     <div class="dialog-section-bottom-headline">
                             <button class="dialog-tab" onclick="renderDialogPokemonAbout(dialogCache[${pokemon.id}])"><h3>About</h3></button>
                             <button class="dialog-tab" onclick="renderDialogPokemonBaseStats(dialogCache[${pokemon.id}]);"><h3>Base Stats</h3></button>
-                            <button class="dialog-tab" onclick="renderDialogPokemonEvolution(allPokeData[${pokemon.id - 1}]);"><h3>Evolution</h3></button>
-                            <button class="dialog-tab" onclick="renderDialogPokemonMoves(allPokeData[${pokemon.id - 1}]);"><h3>Moves</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonEvolution(dialogCache[${pokemon.id}]);"><h3>Evolution</h3></button>
+                            <button class="dialog-tab" onclick="renderDialogPokemonMoves(dialogCache[${pokemon.id}]);"><h3>Moves</h3></button>
                     </div>
                     <section id="dialog-container-stats"></section>
                     <div class="nav-buttons">
@@ -116,10 +116,27 @@ function renderDialogBaseStats(dialogData) {
             `
 }
 
-function renderDialogEvolution(pokemon) {
-    return `Test52`
+function renderDialogEvolution(dialogData) {
+    return `<section id="evolution">
+              <div id="first-evolution">
+                <h3>placeholder Name</h3>
+                <img src="" alt="">
+              </div>
+              <div id="second-evolution">
+                <h3>placeholder Name</h3>
+                <img src="" alt="">
+              </div>
+              <div id="third-evolution">
+                <h3>placeholder Name</h3>
+                <img src="" alt="">
+              </div>
+            </section>
+    `
 }
 
-function renderDialogMoves(pokemon) {
-    return `Test3`
+function renderDialogMoves(dialogData) {
+    return `<ul>
+               ${dialogData.moves}</li>
+            </ul>
+            `
 }

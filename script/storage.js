@@ -28,6 +28,7 @@ async function fetchAllPokeData() {
 
         allPokeData.push(pokemonData);
     }
+
     
     return allPokeData;
 }
@@ -51,21 +52,31 @@ async function getSpeciesData(pokemon) {
 async function buildDialogData(pokemon) {
     const species = await getSpeciesData(pokemon);
 
+    console.log(pokemon);
+    
+
     return {
         pokemon,
         genus: getGenus(species),
         height: pokemon.height,
         weight: pokemon.weight,
         abilities: getAbilities(pokemon),
-        stats: getStats(pokemon)
+        stats: getStats(pokemon),
+        moves: getMoves(pokemon),
     };
     
 }
 
 function getAbilities(pokemon) {
-    return pokemon.abilities
-        .map(ability => ability.ability.name)
-        .join(", ");
+    let abilities = [];
+
+    for (let i = 0; i < pokemon.abilities.length; i++) {
+        abilities.push(pokemon.abilities[i].ability.name);
+    }
+    console.log(abilities);
+    
+
+    return abilities.join(" / ");
 }
 
 function getStats(pokemon) {
@@ -87,7 +98,18 @@ function getGenus(speciesData) {
     }
 }
 
-function getMoves(pokemon)
+function getMoves(pokemon){
+    let moves = [];
+
+    for (let i = 0; i < 10; i++) {
+        moves.push(`<li>${pokemon.moves[i].move.name}</li>`);
+    }
+
+    return moves.join("");
+}
     
+function getEvolutionChain(){
+    
+}
 
 
