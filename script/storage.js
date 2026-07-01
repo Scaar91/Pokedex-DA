@@ -7,32 +7,49 @@ let currentPokeData = [];
 let filteredPokemon = [];
 let speciesCache = {};
 let evoCache = {};
+let searchBaseData = [];
 
 
 
 async function fetchAllDataJson() {
+    const currentLimit = Math.min(limit, 151 - offset);
+
     let response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+        `https://pokeapi.co/api/v2/pokemon?limit=${currentLimit}&offset=${offset}`
     );
     let responseToJson = await response.json();
   
-      return responseToJson.results; 
+      return responseToJson.results;  
 }
 
 async function fetchAllPokeData() {
-    let pokemonList = await fetchAllDataJson()
+    let pokemonList = await fetchAllDataJson();
 
-    for (let index = 0; index < pokemonList.length; index++) {
-        let pokemon = pokemonList[index];
+    for (let pokemon of pokemonList) {
         let response = await fetch(pokemon.url);
         let pokemonData = await response.json();
 
         allPokeData.push(pokemonData);
     }
 
-    
     return allPokeData;
 }
+
+async function fetchSearchBase() {
+    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0");
+    let data = await response.json();
+
+    let list = [];
+
+    for (let pokemon of data.results) {
+        let res = await fetch(pokemon.url);
+        let full = await res.json();
+        list.push(full);
+    }
+
+    searchBaseData = list;
+}
+
 
 async function getSpeciesData(pokemon) {
      
@@ -55,7 +72,6 @@ async function buildDialogData(pokemon) {
     const evolution= await fetchEvolutionChain(species);
    
 
-    console.log(pokemon);
     
     
 
@@ -79,7 +95,7 @@ function getAbilities(pokemon) {
     for (let i = 0; i < pokemon.abilities.length; i++) {
         abilities.push(pokemon.abilities[i].ability.name);
     }
-    console.log(abilities);
+
     
 
     return abilities.join(" / ");
@@ -123,7 +139,7 @@ function getMoves(pokemon){
     let response = await fetch(speciesData.evolution_chain.url);
     let evoData = await response.json();
 
-    console.log(evoData);
+ 
 
     evoCache[speciesData.evolution_chain.url] = evoData;
 
@@ -151,7 +167,7 @@ function findPokemon(name, allPokeData) {
     return allPokeData.find(p => p.name === name);
 }
 
-function getEvolutionPictures(chain, allPokeData) {
+function getEvolutionPictures(chain) {
     let result = [];
     let current = chain;
 
@@ -159,7 +175,7 @@ function getEvolutionPictures(chain, allPokeData) {
         if (!current) break;
 
         const name = current.species.name;
-        const pokemon = findPokemon(name, allPokeData);
+        const pokemon = findPokemon(name, searchBaseData);
 
         result.push({
             name: name,

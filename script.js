@@ -1,15 +1,14 @@
-
 async function init() {
     showLoadingSpinner();
 
-    await fetchAllPokeData();
+    fetchSearchBase(); 
+
+    await fetchAllPokeData(); 
 
     filteredPokemon = allPokeData;
 
-    renderPokeCard();
+    renderPokeCard(); 
     hideLoadingSpinner();
-
-   
 }
 
 let dialogCache = {};
@@ -27,34 +26,46 @@ function renderPokeCard() {
 }
 
 async function loadMore() {
+    if (offset + limit >=151){
+        return;
+    }
+    showLoadingSpinner();
     
-    offset += 20;
-
+    offset += limit;
 
     await fetchAllPokeData();
 
     filteredPokemon = allPokeData;
+
     renderPokeCard();
+    hideLoadingSpinner();
 }
 
 function showLoadingSpinner() {
     document.getElementById('loading-spinner').innerHTML =
     '<img class="loading-spinner-img" src="./assets/img/pokeloading.svg" alt="jumping Pokeball">';
+    document.getElementById('load-button').disabled = true
 }
 
 function hideLoadingSpinner() {
     document.getElementById('loading-spinner').innerHTML = "";
+    document.getElementById('load-button').disabled = false
 }
 
 
 
-
 function searchPokemon() {
+    
     const searchValue = document.getElementById('search-input').value.toLowerCase();
-
-    filteredPokemon = allPokeData.filter(pokemon =>
+   
+    filteredPokemon = searchBaseData.filter(pokemon =>
         pokemon.name.toLowerCase().includes(searchValue)
     );
+
+    if (filteredPokemon.length === 0) {
+        document.getElementById('poke-card-container').innerHTML = '<h2 data-id="not-found">No Pokemon found!</h2>';
+        return;
+    }
 
     renderPokeCard();
 }
