@@ -16,6 +16,7 @@ function renderMain(pokemon) {
                  <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic" 
                  src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
                 </button>
+                <div id="loading-spinner"></div>
              </section>
     `
 }
@@ -51,8 +52,8 @@ function renderDialog(pokemon, dialogData) {
                     </div>
                     <section id="dialog-container-stats"></section>
                     <div class="nav-buttons">
-                        <button class= "nav-btn"> <img src="./assets/icons/arrow-left.svg" alt="arrow left"></button>
-                        <button class= "nav-btn"> <img src="./assets/icons/arrow-right.svg" alt="arrow right"></button>
+                        <button class= "nav-btn" onclick="showPreviousPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-left.svg" alt="arrow left"></button>
+                        <button class= "nav-btn" onclick="showNextPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-right.svg" alt="arrow right"></button>
                     </div>
                                         
 

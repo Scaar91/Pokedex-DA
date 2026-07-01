@@ -1,13 +1,16 @@
 
 async function init() {
     showLoadingSpinner();
-    
+
+   
+    await new Promise(resolve => setTimeout(resolve, 0));
+
     await fetchAllPokeData();
+
     filteredPokemon = allPokeData;
     renderPokeCard();
-    
-    
-    
+
+    hideLoadingSpinner();
 }
 
 let dialogCache = {};
@@ -26,6 +29,7 @@ function renderPokeCard() {
 async function loadMore() {
     
     offset += 20;
+
 
     await fetchAllPokeData();
 
@@ -100,4 +104,23 @@ function renderDialogPokemonMoves(pokemon) {
     dialogPokemonMoves.innerHTML = renderDialogMoves(pokemon);
 }
 
+
+
+async function showPreviousPokemon(currentId) {
+    if (currentId <= 1) return;
+
+    const previousPokemon = allPokeData.find(p => p.id === currentId - 1);
+
+    if (previousPokemon) {
+        await openDialog(previousPokemon);
+    }
+}
+
+async function showNextPokemon(currentId) {
+    const nextPokemon = allPokeData.find(p => p.id === currentId + 1);
+
+    if (nextPokemon) {
+        await openDialog(nextPokemon);
+    }
+}
 
