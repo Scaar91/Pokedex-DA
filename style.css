@@ -184,3 +184,19 @@
 .footer-content a:hover {
     color: #FFDE00;
 }
+
+.imprint {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-height: calc(100vh - 160px);
+    padding: 60px;
+    gap: 20px;
+}
+
+.privacy-style {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
