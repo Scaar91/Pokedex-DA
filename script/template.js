@@ -17,7 +17,6 @@ function renderMain(pokemon) {
                  <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic" 
                  src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
                 </button>
-                <div id="loading-spinner"></div>
              </section>
     `
 }
