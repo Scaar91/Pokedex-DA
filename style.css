@@ -16,6 +16,12 @@
     align-items: center;
 }
 
+.header-logo-line{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 #headline {
     color: #f8fafc;
     font-size: 2rem;
@@ -73,6 +79,10 @@
     background-color: #172033;
     border-radius: 24px;
     
+}
+
+.not-found{
+    text-align: center;
 }
 
 .poke-card {
@@ -199,4 +209,44 @@
     flex-direction: column;
     text-align: center;
     gap: 20px;
+}
+
+
+
+@media (max-width: 740px) {
+
+    #header-container{
+        height: 120px;
+    }
+
+   .header-line{
+    flex-direction: column;
+    gap: 10px;
+   }
+
+   #footer-container{
+    height: 120px;
+   }
+}
+
+@media (max-width: 480px) {
+
+    #main-container{
+        padding: 20px;
+    }
+
+    .poke-card{
+        height: 150px;
+        width: 200px;
+    }
+
+    .poke-card-headline{
+        font-size: 12px;
+    }
+
+    .poke-card-pic{
+        height: 60px;
+        width: 60px;
+    }
+
 }

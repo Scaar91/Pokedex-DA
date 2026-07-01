@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="./style/fonts.css">
     <link rel="stylesheet" href="./style/standard.css">
     <link rel="stylesheet" href="./style/dialog.css">
-    
+
 
     <script src="./script.js" defer></script>
-    
+
     <script src="./script/storage.js" defer></script>
     <script src="./script/template.js" defer></script>
 
@@ -25,9 +25,12 @@
 <body onload="init()">
     <header id="header-container">
         <div class="header-line">
-            <a href="index.html"><img class="img-logo" src="./assets/img/95c-pokeball-1594373.png" alt="Pokeball"></a>
-            <h1 id="headline">Pokedex</h1>
-            <input type="text" data-id="search-input" id="search-input" placeholder="Search Pokemon" oninput="searchPokemon()">
+            <div class="header-logo-line">
+                <a href="index.html"><img class="img-logo" src="./assets/img/95c-pokeball-1594373.png"alt="Pokeball"></a>
+                <h1 id="headline">Pokedex</h1>
+            </div>
+            <input type="text" data-id="search-input" id="search-input" placeholder="Search Pokemon"
+                oninput="searchPokemon()">
     </header>
 
 

@@ -63,7 +63,7 @@ function searchPokemon() {
     );
 
     if (filteredPokemon.length === 0) {
-        document.getElementById('poke-card-container').innerHTML = '<h2 data-id="not-found">No Pokemon found!</h2>';
+        document.getElementById('poke-card-container').innerHTML = '<h2 data-id="not-found" class="not-found">No Pokemon found!</h2>';
         return;
     }
 
