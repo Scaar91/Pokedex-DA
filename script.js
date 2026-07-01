@@ -92,6 +92,12 @@ function closeDialog() {
   document.body.classList.remove("dialog-open");
 }
 
+dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+        closeDialog();
+    }
+});
+
 
 function renderDialogPokemon(pokemon) {
     const dialogPokemon = document.getElementById('dialog-window');
