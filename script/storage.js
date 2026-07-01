@@ -107,7 +107,7 @@ function getGenus(speciesData) {
 function getMoves(pokemon){
     let moves = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < Math.min(10, pokemon.moves.length); i++) {
         moves.push(`<span class="move">${pokemon.moves[i].move.name}</span>`);
     }
 
