@@ -2,18 +2,18 @@
 async function init() {
     showLoadingSpinner();
 
-   
-    await new Promise(resolve => setTimeout(resolve, 0));
-
     await fetchAllPokeData();
 
     filteredPokemon = allPokeData;
-    renderPokeCard();
 
+    renderPokeCard();
     hideLoadingSpinner();
+
+   
 }
 
 let dialogCache = {};
+let currentPokemonId = null;
 
 
 
@@ -39,8 +39,15 @@ async function loadMore() {
 
 function showLoadingSpinner() {
     document.getElementById('loading-spinner').innerHTML =
-    '<img src="./assets/img/pokeloading.svg" alt="jumping Pokeball">';
+    '<img class="loading-spinner-img" src="./assets/img/pokeloading.svg" alt="jumping Pokeball">';
 }
+
+function hideLoadingSpinner() {
+    document.getElementById('loading-spinner').innerHTML = "";
+}
+
+
+
 
 function searchPokemon() {
     const searchValue = document.getElementById('search-input').value.toLowerCase();
@@ -55,6 +62,7 @@ function searchPokemon() {
 const dialog = document.getElementById('dialog-window');
 
 async function openDialog(pokemon) {
+    currentPokemonId = pokemon.id;
     dialog.showModal();
     document.body.classList.add("dialog-open");
 
@@ -121,6 +129,21 @@ async function showNextPokemon(currentId) {
 
     if (nextPokemon) {
         await openDialog(nextPokemon);
+    }
+}
+
+
+document.addEventListener("keydown", arrowKeys);
+
+function arrowKeys(event) {
+    if (!currentPokemonId) return;
+
+    if (event.key === "ArrowLeft") {
+        showPreviousPokemon(currentPokemonId);
+    }
+
+    if (event.key === "ArrowRight") {
+        showNextPokemon(currentPokemonId);
     }
 }
 
