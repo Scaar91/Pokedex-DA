@@ -196,20 +196,34 @@
     color: #FFDE00;
 }
 
+.imprint-container-imprint{
+    display: flex;
+    justify-content: center;
+}
+
 .imprint {
     display: flex;
     flex-direction: column;
     text-align: center;
+    max-width: 1440px;
     min-height: calc(100vh - 160px);
-    padding: 26px;
+    padding: 12px;
     gap: 20px;
+}
+
+.privacy-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .privacy-style {
     display: flex;
     flex-direction: column;
     text-align: center;
+    max-width: 1440px;
     gap: 20px;
+    padding: 20px;
 }
 
 
@@ -251,7 +265,7 @@
     }
 
     .imprint_online_link{
-        font-size: 13px;
+        font-size: 12px;
     }
 
 }

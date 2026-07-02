@@ -25,20 +25,20 @@ function renderDialog(pokemon, dialogData) {
     return `<section data-id="overlay-pokemon-name" id="dialog-container">
                 <section id="dialog-section-top" class="card-color-${pokemon.types[0].type.name}">
                     <div class="dialog-headline">
-                       <button data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-btn"><img src="./assets/icons/close.png" alt="Dialog closeing Button"></button>                   
-                            <div class="dialog-poke-name-type-number">
-                                <div class="dialog-poke-name-type">
-                                    <div class="dialog-poke-name uppercase"">${pokemon.name}</div> 
-                                    <div class="dialog-poke-type">
-                                        <div class="dialog-type uppercase type-color-${pokemon.types[0].type.name}">${pokemon.types[0].type.name}</div>
-                                        ${pokemon.types[1]
-                                        ? `<div class="dialog-type uppercase type-color-${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</div>`
-                                        : ""
-                                        }
-                                    </div>
+                        <div class="dialog-poke-name-type-number">
+                            <div class="dialog-poke-name-type">
+                                <div class="dialog-poke-name uppercase"">${pokemon.name}</div> 
+                                <div class="dialog-poke-type">
+                                    <div class="dialog-type uppercase type-color-${pokemon.types[0].type.name}">${pokemon.types[0].type.name}</div>
+                                    ${pokemon.types[1]
+                                    ? `<div class="dialog-type uppercase type-color-${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</div>`
+                                    : ""
+                                    }
                                 </div>
-                                <div class="dialog-poke-number">#${pokemon.id}</div>
-                            </div>                       
+                                </div>
+                            <div class="dialog-poke-number">#${pokemon.id}</div>
+                            <button data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-btn"><img src="./assets/icons/close.png" alt="Dialog closeing Button"></button>
+                        </div>                       
                    </div>                   
                    <img data-id="dialog-image" class="dialog-poke-img" 
                     src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">

@@ -18,9 +18,8 @@
 }
 
 .close-dialog-btn{
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: 20px;
+    position: absolute;
+    right: 30px;
 }
 
 .dialog-poke-name-type-number{
@@ -76,6 +75,7 @@
     flex-direction: column;
     background: rgba(255,255,255,.95);
     backdrop-filter: blur(10px);
+    min-height: 350px;
 }
 
 dialog::backdrop {
@@ -95,6 +95,8 @@ dialog::backdrop {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
+    padding: 15px;
 
 }
 
@@ -172,6 +174,7 @@ dialog::backdrop {
     justify-content: center;
     gap: 50px;
     padding: 10px;
+    margin-top: auto;
 }
 
 .nav-btn{
@@ -189,4 +192,77 @@ dialog::backdrop {
 
 .nav-btn:hover{
     transform: scale(1.2);
+}
+
+
+
+@media (max-width: 550px){
+    #dialog-window:open{
+        width: 280px;
+    }
+
+    #dialog-section-top{
+        padding: 10px;
+    }
+
+    .dialog-headline{
+        padding-right: 50px;
+    }
+
+    .close-dialog-btn{
+       right: 20px;
+    }
+
+    .dialog-poke-name{
+        font-size: 16px;
+    }
+
+    .dialog-poke-number{
+        font-size: 16px;
+    }
+
+    .dialog-poke-type{
+        gap: 4px;
+    }
+
+    .dialog-type{
+        width: 90px;
+    }
+
+    .dialog-poke-img{
+        width: 100px;
+        height: 100px;
+    }
+
+    #dialog-section-bottom {
+        min-height: 410px;
+    }
+
+    .dialog-section-bottom-headline{
+        gap: 12px;
+    }
+
+    .evolution-circle{
+        width: 60px;
+        height: 60px;
+    }
+
+    .evolution-pic{
+        width: 40px;
+        height: 40px;
+    }
+
+    .evolution-name{
+        font-size: 10px;
+    }
+
+    .evolution-arrow{
+        font-size: 18px;
+    }
+
+    table{
+        border-spacing: 40px 10px;
+    }
+
+   
 }
