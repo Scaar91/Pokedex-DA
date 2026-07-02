@@ -1,13 +1,16 @@
+
 async function init() {
     showLoadingSpinner();
 
-    fetchSearchBase(); 
+    
 
-    await fetchAllPokeData(); 
+    await fetchSearchBase();
+
+    await fetchAllPokeData();
 
     filteredPokemon = allPokeData;
 
-    renderPokeCard(); 
+    renderPokeCard();
     hideLoadingSpinner();
 }
 

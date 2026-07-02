@@ -81,7 +81,7 @@ function renderDialogAbout(data) {
               </tr>
               <tr>
                 <th>Abilities</th>
-                <td>${data.abilities}</td>
+                <td class= "ability-container">${renderAbilities(data.abilities)}</td>
               </tr>   
             </table>
             `

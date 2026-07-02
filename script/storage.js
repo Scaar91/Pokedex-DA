@@ -36,7 +36,7 @@ async function fetchAllPokeData() {
 }
 
 async function fetchSearchBase() {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0");
+    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1510&offset=0");
     let data = await response.json();
 
     let list = [];
@@ -71,10 +71,6 @@ async function buildDialogData(pokemon) {
     const species = await getSpeciesData(pokemon);
     const evolution= await fetchEvolutionChain(species);
    
-
-    
-    
-
     return {
         pokemon,
         genus: getGenus(species),
@@ -90,15 +86,17 @@ async function buildDialogData(pokemon) {
 }
 
 function getAbilities(pokemon) {
-    let abilities = [];
+    return pokemon.abilities.map(a => a.ability.name);
+}
 
-    for (let i = 0; i < pokemon.abilities.length; i++) {
-        abilities.push(pokemon.abilities[i].ability.name);
+function renderAbilities(abilities) {
+    let html = "";
+
+    for (let ability of abilities) {
+        html += `<span class="ability-chip">${ability}</span>`;
     }
 
-    
-
-    return abilities.join(" / ");
+    return html;
 }
 
 function getStats(pokemon) {
@@ -176,7 +174,7 @@ function getEvolutionPictures(chain) {
 
         const name = current.species.name;
         const pokemon = findPokemon(name, searchBaseData);
-
+ 
         result.push({
             name: name,
             img: pokemon?.sprites?.other?.["dream_world"]?.front_default
@@ -186,5 +184,11 @@ function getEvolutionPictures(chain) {
         current = current.evolves_to[0];
     }
 
+
     return result;
+}
+
+function test() {
+
+
 }

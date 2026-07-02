@@ -95,9 +95,24 @@ dialog::backdrop {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     flex: 1;
     padding: 15px;
 
+}
+
+.ability-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 3px;
+    border-radius: 20px;
+    background: #ececec;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.ability-container{
+    display: flex;
 }
 
 .dialog-tab {
@@ -242,6 +257,11 @@ dialog::backdrop {
         gap: 12px;
     }
 
+    .ability-container {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 20px;
+    }
     .evolution-circle{
         width: 60px;
         height: 60px;
@@ -261,7 +281,7 @@ dialog::backdrop {
     }
 
     table{
-        border-spacing: 40px 10px;
+        border-spacing: 30px 10px;
     }
 
    
