@@ -1,13 +1,13 @@
 
 
 function renderMain(pokemon) {
-    return ` <section class="poke-card card-color-${pokemon.types[0].type.name}">
+    return ` <button data-id="card"  onclick="openDialog(allPokeData[${pokemon.id - 1}])" class="poke-card card-color-${pokemon.types[0].type.name}">
 
                 <div class="poke-card-headline">
                     <div class="poke-card-name"><h2>${pokemon.name}</h2></div>
                     <div class="poke-card-number"><h2>#${pokemon.id}</h2></div>               
                 </div>
-                <button data-id="card" onclick="openDialog(allPokeData[${pokemon.id - 1}])" class="poke-card-type-container">
+                <section class="poke-card-type-container">
                     <div class="poke-card-types"><h3 class="poke-card-type uppercase type-color-${pokemon.types[0].type.name}">${pokemon.types[0].type.name}</h3>
                         ${pokemon.types[1]
                         ? `<h3 class="poke-card-type uppercase type-color-${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</h3>`
@@ -16,8 +16,8 @@ function renderMain(pokemon) {
                     </div>
                  <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic" 
                  src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
-                </button>
-             </section>
+                </section>
+             </button>
     `
 }
 
