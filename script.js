@@ -76,6 +76,7 @@ async function openDialog(pokemon) {
     currentPokemonId = pokemon.id;
     dialog.showModal();
     document.body.classList.add("dialog-open");
+    document.body.classList.add("no-scroll");
 
     renderDialogPokemon(pokemon);
 
@@ -90,6 +91,7 @@ async function openDialog(pokemon) {
 function closeDialog() {
   dialog.close();
   document.body.classList.remove("dialog-open");
+  document.body.classList.remove("no-scroll");
 }
 
 dialog.addEventListener("click", (event) => {

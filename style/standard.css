@@ -16,6 +16,10 @@ body {
     flex-direction: column;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 main{
     background-color: #0B1120;
     flex: 1;
