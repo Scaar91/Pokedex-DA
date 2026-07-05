@@ -1,15 +1,11 @@
 let limit = 20;
 let offset = 0;
-
-
 let allPokeData = [];
 let currentPokeData = [];
 let filteredPokemon = [];
 let speciesCache = {};
 let evoCache = {};
 let searchBaseData = [];
-
-
 
 async function fetchAllDataJson() {
     const currentLimit = Math.min(limit, 151 - offset);
@@ -25,20 +21,21 @@ async function fetchAllDataJson() {
 async function fetchAllPokeData() {
     let pokemonList = await fetchAllDataJson();
 
+    const newData = [];
+
     for (let pokemon of pokemonList) {
         let response = await fetch(pokemon.url);
         let pokemonData = await response.json();
 
-        allPokeData.push(pokemonData);
+        newData.push(pokemonData);
     }
 
-    return allPokeData;
+    allPokeData = [...allPokeData, ...newData];
 }
 
 async function fetchSearchBase() {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1510&offset=0");
+    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0");
     let data = await response.json();
-
     let list = [];
 
     for (let pokemon of data.results) {
@@ -46,7 +43,6 @@ async function fetchSearchBase() {
         let full = await res.json();
         list.push(full);
     }
-
     searchBaseData = list;
 }
 
@@ -134,6 +130,7 @@ function getMoves(pokemon){
         return evoCache[speciesData.evolution_chain.url];
     }
 
+
     let response = await fetch(speciesData.evolution_chain.url);
     let evoData = await response.json();
 
@@ -173,22 +170,35 @@ function getEvolutionPictures(chain) {
         if (!current) break;
 
         const name = current.species.name;
-        const pokemon = findPokemon(name, searchBaseData);
- 
+
+        const pokemon =
+            findPokemon(name, allPokeData) ||
+            findPokemon(name, searchBaseData);
+
         result.push({
             name: name,
-            img: pokemon?.sprites?.other?.["dream_world"]?.front_default
-                || pokemon?.sprites?.front_default
+            img:
+                pokemon?.sprites?.other?.dream_world?.front_default ||
+                pokemon?.sprites?.front_default ||
+                "./assets/img/pokeball.png"
         });
 
         current = current.evolves_to[0];
     }
 
-
     return result;
 }
 
-function test() {
+function createEvolutionTemplate(dialogData) {
+    let evolutionTemplate = "";
 
+    for (let i = 0; i < dialogData.evolutionChain.length; i++) {
+        evolutionTemplate += renderEvolutionStage(dialogData.evolutionChain[i]);
+       
+        if (i < dialogData.evolutionChain.length - 1) {
+            evolutionTemplate += `<div class="evolution-arrow">➜</div>`;
+        }
+    }
 
+    return evolutionTemplate;
 }
