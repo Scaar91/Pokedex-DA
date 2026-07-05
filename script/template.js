@@ -1,6 +1,8 @@
 
 
 function renderMain(pokemon) {
+
+
     return ` <button data-id="card"  onclick="openDialogById(${pokemon.id})" class="poke-card card-color-${pokemon.types[0].type.name}">
 
                 <div class="poke-card-headline">
@@ -15,7 +17,7 @@ function renderMain(pokemon) {
                         }
                     </div>
                  <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic" 
-                 src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
+                 src="${getPokemonImage(pokemon)}"alt="${pokemon.name}">
                 </section>
              </button>
     `
@@ -41,7 +43,7 @@ function renderDialog(pokemon, dialogData) {
                         </div>                       
                    </div>                   
                    <img data-id="dialog-image" class="dialog-poke-img" 
-                    src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
+                    src="${getPokemonImage(pokemon)}"alt="${pokemon.name}">
                 </section>
                 <section id="dialog-section-bottom">
                     <div class="dialog-section-bottom-headline">

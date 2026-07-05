@@ -81,6 +81,14 @@ async function buildDialogData(pokemon) {
     
 }
 
+function getPokemonImage(pokemon) {
+    return (
+        pokemon.sprites.other.dream_world.front_default ||
+        pokemon.sprites.other["official-artwork"].front_default ||
+        pokemon.sprites.front_default
+    );
+}
+
 function getAbilities(pokemon) {
     return pokemon.abilities.map(a => a.ability.name);
 }
