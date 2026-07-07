@@ -76,11 +76,12 @@ async function buildDialogData(pokemon) {
 }
 
 function getPokemonImage(pokemon) {
-    return (
-        pokemon.sprites.other.dream_world.front_default ||
+    const img =
+        pokemon.sprites.other?.dream_world.front_default ||
         pokemon.sprites.other["official-artwork"].front_default ||
         pokemon.sprites.front_default
-    );
+    
+    return img;
 }
 
 function getAbilities(pokemon) {
@@ -177,7 +178,7 @@ async function getEvolutionPictures(chain) {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             pokemon = await response.json();
 
-            allPokeData.push(pokemon);
+           
         }
 
         result.push({

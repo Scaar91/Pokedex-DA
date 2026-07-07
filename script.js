@@ -3,9 +3,9 @@ async function init() {
     showLoadingSpinner();
 
     await fetchAllPokeData();
-    
- 
-    
+
+
+
 
     filteredPokemon = allPokeData;
 
@@ -13,7 +13,7 @@ async function init() {
     hideLoadingSpinner();
     fetchSearchBase();
 
-    
+
 }
 
 let dialogCache = {};
@@ -31,11 +31,11 @@ function renderPokeCard() {
 }
 
 async function loadMore() {
-    if (offset + limit >=151){
+    if (offset + limit >= 151) {
         return;
     }
     showLoadingSpinner();
-    
+
     offset += limit;
 
     await fetchAllPokeData();
@@ -48,7 +48,7 @@ async function loadMore() {
 
 function showLoadingSpinner() {
     document.getElementById('loading-spinner').innerHTML =
-    '<img class="loading-spinner-img" src="./assets/img/pokeloading.svg" alt="jumping Pokeball">';
+        '<img class="loading-spinner-img" src="./assets/img/pokeloading.svg" alt="jumping Pokeball">';
     document.getElementById('load-button').disabled = true
 }
 
@@ -67,7 +67,7 @@ async function searchPokemon() {
         .toLowerCase()
         .trim();
 
-    if (!searchValue) {
+    if (searchValue.length < 3) {
         filteredPokemon = allPokeData;
         renderPokeCard();
         return;
@@ -79,19 +79,17 @@ async function searchPokemon() {
 
     filteredPokemon = [];
 
-    for (const pokemon of matches) {
+for (const pokemon of matches) {
 
-        let loaded = allPokeData.find(p => p.name === pokemon.name);
+    let loaded = allPokeData.find(p => p.name === pokemon.name);
 
-        if (!loaded) {
-            const response = await fetch(pokemon.url);
-            loaded = await response.json();
-
-            allPokeData.push(loaded);
-        }
-
-        filteredPokemon.push(loaded);
+    if (!loaded) {
+        const response = await fetch(pokemon.url);
+        loaded = await response.json();
     }
+
+    filteredPokemon.push(loaded);
+}
 
     renderPokeCard();
 }
@@ -100,7 +98,7 @@ const dialog = document.getElementById('dialog-window');
 
 async function openDialogById(id) {
     let pokemon = allPokeData.find(p => p.id === id);
-        
+
 
     if (!pokemon) {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -123,13 +121,13 @@ async function openDialog(pokemon) {
     }
 
     renderDialogPokemonAbout(dialogCache[pokemon.id]);
-    
+
 }
 
 function closeDialog() {
-  dialog.close();
-  document.body.classList.remove("dialog-open");
-  document.body.classList.remove("no-scroll");
+    dialog.close();
+    document.body.classList.remove("dialog-open");
+    document.body.classList.remove("no-scroll");
 }
 
 dialog.addEventListener("click", (event) => {
