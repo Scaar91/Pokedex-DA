@@ -59,25 +59,38 @@ function hideLoadingSpinner() {
 
 
 
-function searchPokemon() {
-    const searchValue = document.getElementById("search-input").value
+async function searchPokemon() {
+
+    const searchValue = document
+        .getElementById("search-input")
+        .value
         .toLowerCase()
         .trim();
 
-  if (searchValue === "") {
-    filteredPokemon = allPokeData.slice(0, offset + limit);
-    renderPokeCard();
-    return;
-}
+    if (!searchValue) {
+        filteredPokemon = allPokeData;
+        renderPokeCard();
+        return;
+    }
 
-    filteredPokemon = searchBaseData.filter(pokemon =>
-        pokemon.name.toLowerCase().includes(searchValue)
+    const matches = searchBaseData.filter(p =>
+        p.name.includes(searchValue)
     );
 
-    if (filteredPokemon.length === 0) {
-        document.getElementById("poke-card-container").innerHTML =
-            '<h2 class="not-found">No Pokemon found!</h2>';
-        return;
+    filteredPokemon = [];
+
+    for (const pokemon of matches) {
+
+        let loaded = allPokeData.find(p => p.name === pokemon.name);
+
+        if (!loaded) {
+            const response = await fetch(pokemon.url);
+            loaded = await response.json();
+
+            allPokeData.push(loaded);
+        }
+
+        filteredPokemon.push(loaded);
     }
 
     renderPokeCard();
@@ -86,9 +99,8 @@ function searchPokemon() {
 const dialog = document.getElementById('dialog-window');
 
 async function openDialogById(id) {
-    let pokemon =
-        allPokeData.find(p => p.id === id) ||
-        searchBaseData.find(p => p.id === id);
+    let pokemon = allPokeData.find(p => p.id === id);
+        
 
     if (!pokemon) {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);

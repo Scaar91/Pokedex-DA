@@ -14,8 +14,8 @@ async function fetchAllDataJson() {
         `https://pokeapi.co/api/v2/pokemon?limit=${currentLimit}&offset=${offset}`
     );
     let responseToJson = await response.json();
-  
-      return responseToJson.results;  
+
+    return responseToJson.results;
 }
 
 async function fetchAllPokeData() {
@@ -34,21 +34,15 @@ async function fetchAllPokeData() {
 }
 
 async function fetchSearchBase() {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0");
-    let data = await response.json();
-    let list = [];
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0");
+    const data = await response.json();
 
-    for (let pokemon of data.results) {
-        let res = await fetch(pokemon.url);
-        let full = await res.json();
-        list.push(full);
-    }
-    searchBaseData = list;
+    searchBaseData = data.results;
 }
 
 
 async function getSpeciesData(pokemon) {
-     
+
     if (speciesCache[pokemon.id]) {
         return speciesCache[pokemon.id];
     }
@@ -58,15 +52,15 @@ async function getSpeciesData(pokemon) {
 
     speciesCache[pokemon.id] = speciesData;
 
-    
+
     return speciesData;
 
 }
 
 async function buildDialogData(pokemon) {
     const species = await getSpeciesData(pokemon);
-    const evolution= await fetchEvolutionChain(species);
-   
+    const evolution = await fetchEvolutionChain(species);
+
     return {
         pokemon,
         genus: getGenus(species),
@@ -76,9 +70,9 @@ async function buildDialogData(pokemon) {
         stats: getStats(pokemon),
         moves: getMoves(pokemon),
         evolutionNames: getEvolutionNames(evolution.chain),
-        evolutionChain: getEvolutionPictures(evolution.chain, allPokeData)
+        evolutionChain: await getEvolutionPictures(evolution.chain, allPokeData)
     };
-    
+
 }
 
 function getPokemonImage(pokemon) {
@@ -122,7 +116,7 @@ function getGenus(speciesData) {
     }
 }
 
-function getMoves(pokemon){
+function getMoves(pokemon) {
     let moves = [];
 
     for (let i = 0; i < Math.min(10, pokemon.moves.length); i++) {
@@ -131,10 +125,10 @@ function getMoves(pokemon){
 
     return moves.join("");
 }
-    
- async function fetchEvolutionChain(speciesData){
 
-     if (evoCache[speciesData.evolution_chain.url]) {
+async function fetchEvolutionChain(speciesData) {
+
+    if (evoCache[speciesData.evolution_chain.url]) {
         return evoCache[speciesData.evolution_chain.url];
     }
 
@@ -142,16 +136,16 @@ function getMoves(pokemon){
     let response = await fetch(speciesData.evolution_chain.url);
     let evoData = await response.json();
 
- 
+
 
     evoCache[speciesData.evolution_chain.url] = evoData;
 
-    
+
     return evoData;
-} 
+}
 
 function getEvolutionNames(chain) {
-    
+
     let evoNames = [];
     let current = chain;
 
@@ -170,25 +164,25 @@ function findPokemon(name, allPokeData) {
     return allPokeData.find(p => p.name === name);
 }
 
-function getEvolutionPictures(chain) {
+async function getEvolutionPictures(chain) {
     let result = [];
     let current = chain;
 
-    for (let i = 0; i < 10; i++) {
-        if (!current) break;
-
+    while (current) {
         const name = current.species.name;
 
-        const pokemon =
-            findPokemon(name, allPokeData) ||
-            findPokemon(name, searchBaseData);
+        let pokemon = allPokeData.find(p => p.name === name);
+
+        if (!pokemon) {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+            pokemon = await response.json();
+
+            allPokeData.push(pokemon);
+        }
 
         result.push({
-            name: name,
-            img:
-                pokemon?.sprites?.other?.dream_world?.front_default ||
-                pokemon?.sprites?.front_default ||
-                "./assets/img/pokeball.png"
+            name,
+            img: getPokemonImage(pokemon)
         });
 
         current = current.evolves_to[0];
@@ -202,7 +196,7 @@ function createEvolutionTemplate(dialogData) {
 
     for (let i = 0; i < dialogData.evolutionChain.length; i++) {
         evolutionTemplate += renderEvolutionStage(dialogData.evolutionChain[i]);
-       
+
         if (i < dialogData.evolutionChain.length - 1) {
             evolutionTemplate += `<div class="evolution-arrow">➜</div>`;
         }
