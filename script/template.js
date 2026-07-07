@@ -16,8 +16,8 @@ function renderMain(pokemon) {
                         : ""
                         }
                     </div>
-                 <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic" 
-                 src="${getPokemonImage(pokemon)}"alt="${pokemon.name}">
+                 <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic"
+                 src="${getPokemonImage(pokemon)}" loading="lazy" alt="${pokemon.name}">
                 </section>
              </button>
     `

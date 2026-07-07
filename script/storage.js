@@ -28,6 +28,7 @@ async function fetchAllPokeData() {
         let pokemonData = await response.json();
 
         newData.push(pokemonData);
+
     }
 
     allPokeData = [...allPokeData, ...newData];
@@ -77,8 +78,8 @@ async function buildDialogData(pokemon) {
 
 function getPokemonImage(pokemon) {
     const img =
-        pokemon.sprites.other?.dream_world.front_default ||
-        pokemon.sprites.other["official-artwork"].front_default ||
+        pokemon.sprites.other?.dream_world?.front_default ||
+        pokemon.sprites.other?.["official-artwork"]?.front_default ||
         pokemon.sprites.front_default
     
     return img;

@@ -3,8 +3,7 @@ async function init() {
     showLoadingSpinner();
 
     await fetchAllPokeData();
-
-
+    
 
 
     filteredPokemon = allPokeData;
@@ -12,6 +11,7 @@ async function init() {
     renderPokeCard();
     hideLoadingSpinner();
     fetchSearchBase();
+
 
 
 }
@@ -25,9 +25,13 @@ function renderPokeCard() {
 
     const pokeCard = document.getElementById('poke-card-container');
     pokeCard.innerHTML = "";
+    let html = "";
+
     for (let index = 0; index < filteredPokemon.length; index++) {
-        pokeCard.innerHTML += renderMain(filteredPokemon[index]);
+        html += renderMain(filteredPokemon[index]);
     }
+
+    pokeCard.innerHTML = html;
 }
 
 async function loadMore() {
@@ -79,17 +83,17 @@ async function searchPokemon() {
 
     filteredPokemon = [];
 
-for (const pokemon of matches) {
+    for (const pokemon of matches) {
 
-    let loaded = allPokeData.find(p => p.name === pokemon.name);
+        let loaded = allPokeData.find(p => p.name === pokemon.name);
 
-    if (!loaded) {
-        const response = await fetch(pokemon.url);
-        loaded = await response.json();
+        if (!loaded) {
+            const response = await fetch(pokemon.url);
+            loaded = await response.json();
+        }
+
+        filteredPokemon.push(loaded);
     }
-
-    filteredPokemon.push(loaded);
-}
 
     renderPokeCard();
 }
