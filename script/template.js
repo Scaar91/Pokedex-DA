@@ -1,8 +1,4 @@
-
-
 function renderMain(pokemon) {
-
-
     return ` <button data-id="card"  onclick="openDialogById(${pokemon.id})" class="poke-card card-color-${pokemon.types[0].type.name}">
 
                 <div class="poke-card-headline">
@@ -20,7 +16,7 @@ function renderMain(pokemon) {
                  src="${getPokemonImage(pokemon)}" loading="lazy" alt="${pokemon.name}">
                 </section>
              </button>
-    `
+            `
 }
 
 function renderDialog(pokemon, dialogData) {
@@ -57,12 +53,7 @@ function renderDialog(pokemon, dialogData) {
                         <button data-id="prev-button" class= "nav-btn" onclick="showPreviousPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-left.svg" alt="arrow left"></button>
                         <button data-id="next-button" class= "nav-btn" onclick="showNextPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-right.svg" alt="arrow right"></button>
                     </div>
-                                        
-
-                    
-                         
-                 </section>
-                 
+                </section>
             </section>
             `
 }
@@ -133,31 +124,31 @@ function renderDialogBaseStats(dialogData) {
 
 function renderDialogEvolution(dialogData) {
     return `
-        <section id="evolution">
-            ${createEvolutionTemplate(dialogData)}
-        </section>
-    `;
+            <section id="evolution">
+                ${createEvolutionTemplate(dialogData)}
+            </section>
+            `;
 }
 
 function renderEvolutionStage(pokemon) {
     return `
-        <div class="evolution-stage">
-            <h6>
-                <div class="evolution-name uppercase">
-                    ${pokemon.name}
+            <div class="evolution-stage">
+                <h6>
+                    <div class="evolution-name uppercase">
+                        ${pokemon.name}
+                    </div>
+                </h6>
+                <div class="evolution-circle">
+                    <img class="evolution-pic" src="${pokemon.img}">
                 </div>
-            </h6>
-            <div class="evolution-circle">
-                <img class="evolution-pic" src="${pokemon.img}">
             </div>
-        </div>
-    `;
+            `;
 }
 
 function renderDialogMoves(dialogData) {
       return `
-        <div class="moves-container">
-            ${dialogData.moves}
-        </div>
-    `;
+            <div class="moves-container">
+                ${dialogData.moves}
+            </div>
+            `;
 }

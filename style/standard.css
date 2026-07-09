@@ -1,9 +1,9 @@
-html{
+html {
     font-family: "Orbitron";
     color: white;
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     scroll-behavior: smooth;
@@ -17,30 +17,30 @@ body {
 }
 
 .no-scroll {
-  overflow: hidden;
+    overflow: hidden;
 }
 
-main{
+main {
     background-color: #0B1120;
     flex: 1;
 }
 
-button{
+button {
     cursor: pointer;
     background: none;
     border: none;
 }
 
-table{
+table {
     font-size: 12px;
     border-spacing: 35px 20px;
 }
 
-th{
+th {
     color: black;
     height: 20px;
 }
 
-tr{
+tr {
     color: #696b70;
 }
