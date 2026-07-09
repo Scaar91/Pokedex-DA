@@ -10,7 +10,7 @@ function renderMain(pokemon) {
                         ${pokemon.types[1]
                         ? `<h3 class="poke-card-type uppercase type-color-${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</h3>`
                         : ""
-                        }
+        }
                     </div>
                  <img data-id="card-image" class="card-color-${pokemon.types[0].type.name} poke-card-pic"
                  src="${getPokemonImage(pokemon)}" loading="lazy" alt="${pokemon.name}">
@@ -31,7 +31,7 @@ function renderDialog(pokemon, dialogData) {
                                     ${pokemon.types[1]
                                     ? `<div class="dialog-type uppercase type-color-${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</div>`
                                     : ""
-                                    }
+        }
                                 </div>
                                 </div>
                             <div class="dialog-poke-number">#${pokemon.id}</div>
@@ -146,7 +146,7 @@ function renderEvolutionStage(pokemon) {
 }
 
 function renderDialogMoves(dialogData) {
-      return `
+    return `
             <div class="moves-container">
                 ${dialogData.moves}
             </div>

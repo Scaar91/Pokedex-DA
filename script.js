@@ -45,37 +45,59 @@ function hideLoadingSpinner() {
 }
 
 async function searchPokemon() {
-    const searchValue = document
+    const searchValue = getSearchValue();
+    if (searchValue.length < 3) {
+        filteredPokemon = allPokeData;
+        renderPokeCard();
+        showLoadMoreButton();
+        return;
+    }
+    const matches = getSearchMatches(searchValue);
+    filteredPokemon = await loadSearchResults(matches);
+    renderPokeCard();
+    hideLoadMoreButton()
+}
+
+function getSearchValue() {
+    return document
         .getElementById("search-input")
         .value
         .toLowerCase()
         .trim();
+}
 
-    if (searchValue.length < 3) {
-        filteredPokemon = allPokeData;
-        renderPokeCard();
-        return;
-    }
-
-    const matches = searchBaseData.filter(p =>
-        p.name.includes(searchValue)
+function getSearchMatches(searchValue) {
+    return searchBaseData.filter(pokemon =>
+        pokemon.name.includes(searchValue)
     );
+}
 
-    filteredPokemon = [];
-
+async function loadSearchResults(matches) {
+    const results = [];
     for (const pokemon of matches) {
-
-        let loaded = allPokeData.find(p => p.name === pokemon.name);
-
-        if (!loaded) {
-            const response = await fetch(pokemon.url);
-            loaded = await response.json();
-        }
-
-        filteredPokemon.push(loaded);
+        const loaded = await getPokemonData(pokemon);
+        results.push(loaded);
     }
+    return results;
+}
 
-    renderPokeCard();
+function hideLoadMoreButton() {
+    document.getElementById('load-button').style.display= "none"
+}
+
+function showLoadMoreButton() {
+    document.getElementById("load-button").style.display = "flex";
+}
+
+async function getPokemonData(pokemon) {
+    const cachedPokemon = allPokeData.find(
+        p => p.name === pokemon.name
+    );
+    if (cachedPokemon) {
+        return cachedPokemon;
+    }
+    const response = await fetch(pokemon.url);
+    return await response.json();
 }
 
 const dialog = document.getElementById('dialog-window');
@@ -91,13 +113,15 @@ async function openDialogById(id) {
 
 async function openDialog(pokemon) {
     currentPokemonId = pokemon.id;
+
+    if (!dialogCache[pokemon.id]) {
+        dialogCache[pokemon.id] = await buildDialogData(pokemon);
+    }
+
     dialog.showModal();
     document.body.classList.add("dialog-open");
     document.body.classList.add("no-scroll");
     renderDialogPokemon(pokemon);
-    if (!dialogCache[pokemon.id]) {
-        dialogCache[pokemon.id] = await buildDialogData(pokemon);
-    }
     renderDialogPokemonAbout(dialogCache[pokemon.id]);
 }
 
