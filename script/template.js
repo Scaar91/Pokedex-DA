@@ -69,7 +69,9 @@ function renderDialog(pokemon, dialogData) {
 
 function renderDialogAbout(datas) {
     return `
-            <p class= "description">${datas.description}</p>
+            <div class= "description-container">
+                <p class= "description">${datas.description}</p>
+            </div>
             <table>
               <tr>
                 <th>Species</th>
@@ -91,27 +93,39 @@ function renderDialogBaseStats(dialogData) {
     return `<table>
               <tr>
                 <th>HP</th>
-                <td>${dialogData.stats.hp}</td>
+                <td class="progress-bar-container">
+                    <div class="progress-bar type-color-${dialogData.pokemon.types[0].type.name}" id="progress-line-hp" style="width: 0%">${dialogData.stats.hp}</div>
+                </td>
               </tr>
               <tr>
                 <th>Attack</th>
-                <td>${dialogData.stats.attack}</td>
+                <td class="progress-bar-container">
+                    <div class="progress-bar type-color-${dialogData.pokemon.types[0].type.name}" id="progress-line-attack" style="width: 0%">${dialogData.stats.attack}</div>
+                </td>
               </tr>
               <tr>
                 <th>Defense</th>
-                <td>${dialogData.stats.defense}</td>
+                <td class="progress-bar-container">
+                    <div class="progress-bar type-color-${dialogData.pokemon.types[0].type.name}" id="progress-line-defense" style="width: 0%">${dialogData.stats.defense}</div>
+                </td>
               </tr>
               <tr>
-                <th>Special Attack</th>
-                <td>${dialogData.stats.specialAttack}</td>
+                <th>Specialattack</th>
+                <td class="progress-bar-container">
+                    <div class="progress-bar type-color-${dialogData.pokemon.types[0].type.name}" id="progress-line-special-attack" style="width: 0%">${dialogData.stats.specialAttack}</div>
+                </td>
               </tr>
               <tr>
-                <th>Special Defense</th>
-                <td>${dialogData.stats.specialDefense}</td>
+                <th>Specialdefense</th>
+                <td class="progress-bar-container">
+                    <div class="progress-bar type-color-${dialogData.pokemon.types[0].type.name}" id="progress-line-special-defense" style="width: 0%">${dialogData.stats.specialDefense}</div>
+                </td>
               </tr>
               <tr>
                 <th>Speed</th>
-                <td>${dialogData.stats.speed}</td>
+                <td class="progress-bar-container">
+                    <div class="progress-bar type-color-${dialogData.pokemon.types[0].type.name}" id="progress-line-speed" style="width: 0%">${dialogData.stats.speed}</div>
+                </td>
               </tr>     
             </table>
             `

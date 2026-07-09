@@ -3,7 +3,7 @@ async function init() {
     showLoadingSpinner();
 
     await fetchAllPokeData();
-    
+
 
 
     filteredPokemon = allPokeData;
@@ -157,6 +157,12 @@ function renderDialogPokemonBaseStats(dialogData) {
     const dialogPokemonBaseStats = document.getElementById('dialog-container-stats');
     dialogPokemonBaseStats.innerHTML = "";
     dialogPokemonBaseStats.innerHTML = renderDialogBaseStats(dialogData);
+    getStatBar("progress-line-hp", dialogData.stats.hp);
+    getStatBar("progress-line-attack", dialogData.stats.attack);
+    getStatBar("progress-line-defense", dialogData.stats.defense);
+    getStatBar("progress-line-special-attack", dialogData.stats.specialAttack);
+    getStatBar("progress-line-special-defense", dialogData.stats.specialDefense);
+    getStatBar("progress-line-speed", dialogData.stats.speed);
 }
 
 function renderDialogPokemonEvolution(pokemon) {
@@ -206,3 +212,6 @@ function arrowKeys(event) {
     }
 }
 
+function getStatBar(id, value) {
+    document.getElementById(id).style.width = `${value / 2}%`;
+}

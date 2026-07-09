@@ -33,11 +33,12 @@ button{
 
 table{
     font-size: 12px;
-    border-spacing: 52px 20px;
+    border-spacing: 35px 20px;
 }
 
 th{
     color: black;
+    height: 20px;
 }
 
 tr{
