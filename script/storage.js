@@ -127,22 +127,32 @@ function findPokemon(name, allPokeData) {
 }
 
 async function getEvolutionPictures(chain) {
-    let result = [];
+    const result = [];
     let current = chain;
     while (current) {
-        const name = current.species.name;
-        let pokemon = allPokeData.find(p => p.name === name);
-        if (!pokemon) {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-            pokemon = await response.json();
-        }
-        result.push({
-            name,
-            img: getPokemonImage(pokemon)
-        });
+        const pokemon = await getEvolutionPokemon(current.species.name);
+        result.push(createEvolutionPicture(pokemon));
         current = current.evolves_to[0];
     }
     return result;
+}
+
+async function getEvolutionPokemon(name) {
+    let pokemon = allPokeData.find(p => p.name === name);
+    if (!pokemon) {
+        const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${name}`
+        );
+        pokemon = await response.json();
+    }
+    return pokemon;
+}
+
+function createEvolutionPicture(pokemon) {
+    return {
+        name: pokemon.name,
+        img: getPokemonImage(pokemon)
+    };
 }
 
 function createEvolutionTemplate(dialogData) {
