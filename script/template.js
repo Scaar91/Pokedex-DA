@@ -67,23 +67,21 @@ function renderDialog(pokemon, dialogData) {
             `
 }
 
-function renderDialogAbout(data) {
-    return `<table>
+function renderDialogAbout(datas) {
+    return `
+            <p class= "description">${datas.description}</p>
+            <table>
               <tr>
                 <th>Species</th>
-                <td>${data.genus}</td>
+                <td>${datas.genus}</td>
               </tr>
               <tr>
                 <th>Height</th>
-                <td>${data.height}</td>
+                <td>${datas.height}</td>
               </tr>
               <tr>
                 <th>Weight</th>
-                <td>${data.weight}</td>
-              </tr>
-              <tr>
-                <th>Abilities</th>
-                <td class= "ability-container">${renderAbilities(data.abilities)}</td>
+                <td>${datas.weight}</td>
               </tr>   
             </table>
             `

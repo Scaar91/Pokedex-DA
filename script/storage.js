@@ -64,10 +64,10 @@ async function buildDialogData(pokemon) {
 
     return {
         pokemon,
+        description: getDescription(species),
         genus: getGenus(species),
         height: pokemon.height,
         weight: pokemon.weight,
-        abilities: getAbilities(pokemon),
         stats: getStats(pokemon),
         moves: getMoves(pokemon),
         evolutionNames: getEvolutionNames(evolution.chain),
@@ -85,18 +85,12 @@ function getPokemonImage(pokemon) {
     return img;
 }
 
-function getAbilities(pokemon) {
-    return pokemon.abilities.map(a => a.ability.name);
-}
+function getDescription(species) {
+    const entry = species.flavor_text_entries.find(
+        entry => entry.language.name === "en"
+    );
 
-function renderAbilities(abilities) {
-    let html = "";
-
-    for (let ability of abilities) {
-        html += `<span class="ability-chip">${ability}</span>`;
-    }
-
-    return html;
+    return entry ? entry.flavor_text.replace(/\f/g, " ") : "No Discription available.";
 }
 
 function getStats(pokemon) {
