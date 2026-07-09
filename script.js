@@ -48,14 +48,19 @@ async function searchPokemon() {
     const searchValue = getSearchValue();
     if (searchValue.length < 3) {
         filteredPokemon = allPokeData;
-        renderPokeCard();
         showLoadMoreButton();
-        return;
+    } else {
+        filteredPokemon = await loadSearchResults(getSearchMatches(searchValue));
+        if (!filteredPokemon.length) return showNoResults();
+        hideLoadMoreButton();
     }
-    const matches = getSearchMatches(searchValue);
-    filteredPokemon = await loadSearchResults(matches);
     renderPokeCard();
-    hideLoadMoreButton()
+}
+
+function showNoResults() {
+    document.getElementById("poke-card-container").innerHTML =
+        "<h3 data-id='not-found' class='not-found'>No match found!</h3>";
+    hideLoadMoreButton();
 }
 
 function getSearchValue() {
