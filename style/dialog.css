@@ -129,20 +129,6 @@ dialog::backdrop {
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.ability-chip {
-    display: inline-block;
-    padding: 4px 10px;
-    margin: 3px;
-    border-radius: 20px;
-    background: #ececec;
-    font-size: 14px;
-    text-transform: capitalize;
-}
-
-.ability-container {
-    display: flex;
-}
-
 .dialog-tab {
     background: none;
     border: none;
@@ -198,8 +184,7 @@ dialog::backdrop {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 15px;
+    gap: 15px;
 }
 
 .move {
@@ -286,10 +271,8 @@ dialog::backdrop {
         font-size: 8px;
     }
 
-    .ability-container {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 20px;
+    #dialog-container-stats {
+        gap: 40px;
     }
 
     .evolution-circle {
@@ -310,7 +293,11 @@ dialog::backdrop {
         font-size: 18px;
     }
 
+    .moves-container{
+        gap: 3px;
+    }
+
     table {
-        border-spacing: 0px 10px;
+        border-spacing: 10px 20px;
     }
 }

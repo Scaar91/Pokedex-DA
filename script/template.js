@@ -1,6 +1,5 @@
 function renderMain(pokemon) {
-    return ` <button data-id="card"  onclick="openDialogById(${pokemon.id})" class="poke-card card-color-${pokemon.types[0].type.name}">
-
+    return ` <button aria-label="open-poke-card" data-id="card"  onclick="openDialogById(${pokemon.id})" class="poke-card card-color-${pokemon.types[0].type.name}">
                 <div class="poke-card-headline">
                     <div class="poke-card-name"><h2>${pokemon.name}</h2></div>
                     <div class="poke-card-number"><h2>#${pokemon.id}</h2></div>               
@@ -35,7 +34,7 @@ function renderDialog(pokemon, dialogData) {
                                 </div>
                                 </div>
                             <div class="dialog-poke-number">#${pokemon.id}</div>
-                            <button data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-btn"><img src="./assets/icons/close.png" alt="Dialog closeing Button"></button>
+                            <button aria-label="close-Dialog" data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-btn"><img src="./assets/icons/close.png" alt="Dialog closeing Button"></button>
                         </div>                       
                    </div>                   
                    <img data-id="dialog-image" class="dialog-poke-img" 
@@ -43,15 +42,15 @@ function renderDialog(pokemon, dialogData) {
                 </section>
                 <section id="dialog-section-bottom">
                     <div class="dialog-section-bottom-headline">
-                            <button class="dialog-tab" onclick="renderDialogPokemonAbout(dialogCache[${pokemon.id}])"><h3>About</h3></button>
-                            <button class="dialog-tab" onclick="renderDialogPokemonBaseStats(dialogCache[${pokemon.id}]);"><h3>Base Stats</h3></button>
-                            <button class="dialog-tab" onclick="renderDialogPokemonEvolution(dialogCache[${pokemon.id}]);"><h3>Evolution</h3></button>
-                            <button class="dialog-tab" onclick="renderDialogPokemonMoves(dialogCache[${pokemon.id}]);"><h3>Moves</h3></button>
+                            <button aria-label="open-about" class="dialog-tab" onclick="renderDialogPokemonAbout(dialogCache[${pokemon.id}])"><h3>About</h3></button>
+                            <button aria-label="open-stats" class="dialog-tab" onclick="renderDialogPokemonBaseStats(dialogCache[${pokemon.id}]);"><h3>Base Stats</h3></button>
+                            <button aria-label="open-Evolution-chain" class="dialog-tab" onclick="renderDialogPokemonEvolution(dialogCache[${pokemon.id}]);"><h3>Evolution</h3></button>
+                            <button aria-label="open-moves" class="dialog-tab" onclick="renderDialogPokemonMoves(dialogCache[${pokemon.id}]);"><h3>Moves</h3></button>
                     </div>
                     <section id="dialog-container-stats"></section>
                     <div class="nav-buttons">
-                        <button data-id="prev-button" class= "nav-btn" onclick="showPreviousPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-left.svg" alt="arrow left"></button>
-                        <button data-id="next-button" class= "nav-btn" onclick="showNextPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-right.svg" alt="arrow right"></button>
+                        <button aria-label="arrow-left" data-id="prev-button" class= "nav-btn" onclick="showPreviousPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-left.svg" alt="arrow left"></button>
+                        <button aria-label="arrow-right" data-id="next-button" class= "nav-btn" onclick="showNextPokemon(${pokemon.id})"> <img src="./assets/icons/arrow-right.svg" alt="arrow right"></button>
                     </div>
                 </section>
             </section>
@@ -70,11 +69,11 @@ function renderDialogAbout(datas) {
               </tr>
               <tr>
                 <th>Height</th>
-                <td>${datas.height}</td>
+                <td>${datas.height} &nbsp&nbsp;lnch</td>
               </tr>
               <tr>
                 <th>Weight</th>
-                <td>${datas.weight}</td>
+                <td>${datas.weight} &nbsp&nbsp;lb</td>
               </tr>   
             </table>
             `
