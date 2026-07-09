@@ -22,9 +22,6 @@ function renderPokeCard() {
 }
 
 async function loadMore() {
-    if (offset + limit >= 151) {
-        return;
-    }
     showLoadingSpinner();
     offset += limit;
     await fetchAllPokeData();
