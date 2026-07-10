@@ -1,6 +1,8 @@
 let dialogCache = {};
 let currentPokemonId = null;
 
+document.addEventListener("keydown", arrowKeys);
+
 async function init() {
     showLoadingSpinner();
     await fetchAllPokeData();
@@ -176,34 +178,27 @@ function renderDialogPokemonMoves(pokemon) {
 }
 
 async function showPreviousPokemon(currentId) {
-    if (currentId <= 1) return;
-    const previousPokemon = allPokeData.find(p => p.id === currentId - 1);
-    if (previousPokemon) {
-        await openDialog(previousPokemon);
-    }
+    const currentIndex = filteredPokemon.findIndex(p => p.id === currentId);
+    const previousIndex = currentIndex === 0 ? filteredPokemon.length - 1 : currentIndex - 1;
+    await openDialog(filteredPokemon[previousIndex]);
 }
 
 async function showNextPokemon(currentId) {
-    const nextPokemon = allPokeData.find(p => p.id === currentId + 1);
-    if (nextPokemon) {
-        await openDialog(nextPokemon);
-    }
+    const currentIndex = filteredPokemon.findIndex(p => p.id === currentId);
+    const nextIndex = currentIndex === filteredPokemon.length - 1 ? 0 : currentIndex + 1;
+    await openDialog(filteredPokemon[nextIndex]);
 }
-
-document.addEventListener("keydown", arrowKeys);
 
 function arrowKeys(event) {
     if (!currentPokemonId) return;
-
     if (event.key === "ArrowLeft") {
         showPreviousPokemon(currentPokemonId);
     }
-
     if (event.key === "ArrowRight") {
         showNextPokemon(currentPokemonId);
     }
 }
 
 function getStatBar(id, value) {
-    document.getElementById(id).style.width = `${value / 2}%`;
+    document.getElementById(id).style.width = `${value / 1.4}%`;
 }
